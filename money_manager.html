@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 30px auto;
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Money Management Tool</h1>
+
+        <div class="input-group">
+            <label for="income">Total Income:</label>
+            <input type="number" id="income" placeholder="Enter your total income" value="0">
+        </div>
+
+        <div class="input-group">
+            <label for="expenses">Total Expenses:</label>
+            <input type="number" id="expenses" placeholder="Enter your total expenses" value="0">
+        </div>
+
+        <button onclick="calculateBalance()">Calculate Balance</button>
+
+        <div class="result" id="balanceResult">
+            Your current balance will appear here.
+        </div>
+    </div>
+
+    <script>
+        function calculateBalance() {
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+
+            const balance = income - expenses;
+            const resultElement = document.getElementById('balanceResult');
+
+            resultElement.textContent = `Current Balance: $${balance.toFixed(2)}`;
+
+            resultElement.classList.remove('positive', 'negative');
+            if (balance >= 0) {
+                resultElement.classList.add('positive');
+            } else {
+                resultElement.classList.add('negative');
+            }
+        }
+    </script>
+</body>
+</html>
